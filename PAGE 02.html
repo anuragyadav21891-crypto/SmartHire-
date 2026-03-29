@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>SmartHire | Candidate Intelligence Dashboard</title>
+<!-- Google Fonts -->
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@700;800&amp;family=Inter:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<!-- Material Symbols -->
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            colors: {
+              "tertiary-fixed-dim": "#c0c1ff",
+              "on-secondary": "#ffffff",
+              "surface-container": "#e6eeff",
+              "inverse-on-surface": "#ebf1ff",
+              "primary-container": "#2e5bff",
+              "error": "#ba1a1a",
+              "surface-dim": "#ccdbf4",
+              "error-container": "#ffdad6",
+              "secondary-container": "#dae2fd",
+              "inverse-primary": "#b8c3ff",
+              "on-tertiary-fixed": "#07006c",
+              "inverse-surface": "#233144",
+              "secondary-fixed": "#dae2fd",
+              "surface-container-low": "#eff4ff",
+              "on-secondary-fixed": "#131b2e",
+              "on-tertiary": "#ffffff",
+              "on-surface": "#0d1c2f",
+              "on-primary-fixed-variant": "#0035be",
+              "tertiary-fixed": "#e1e0ff",
+              "secondary-fixed-dim": "#bec6e0",
+              "primary-fixed-dim": "#b8c3ff",
+              "on-secondary-container": "#5c647a",
+              "surface-container-high": "#dde9ff",
+              "on-error": "#ffffff",
+              "surface-variant": "#d5e3fd",
+              "surface-container-lowest": "#ffffff",
+              "on-surface-variant": "#434656",
+              "on-primary": "#ffffff",
+              "on-primary-container": "#efefff",
+              "on-primary-fixed": "#001356",
+              "surface-container-highest": "#d5e3fd",
+              "on-tertiary-fixed-variant": "#2f2ebe",
+              "secondary": "#565e74",
+              "background": "#f8f9ff",
+              "primary-fixed": "#dde1ff",
+              "on-tertiary-container": "#f1eeff",
+              "on-error-container": "#93000a",
+              "tertiary": "#3e3fcc",
+              "surface": "#f8f9ff",
+              "surface-bright": "#f8f9ff",
+              "outline": "#747688",
+              "primary": "#0040e0",
+              "on-background": "#0d1c2f",
+              "tertiary-container": "#585be6",
+              "surface-tint": "#124af0",
+              "on-secondary-fixed-variant": "#3f465c",
+              "outline-variant": "#c4c5d9",
+              "emerald-match": "#10B981",
+              "indigo-apply": "#4F46E5"
+            },
+            fontFamily: {
+              "headline": ["Plus Jakarta Sans"],
+              "body": ["Inter"],
+              "label": ["Inter"]
+            },
+            borderRadius: {"DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px"},
+          },
+        },
+      }
+    </script>
+<style>
+      .glass-morphism {
+        background: rgba(255, 255, 255, 0.6);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+      }
+      .material-symbols-outlined {
+        font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+</head>
+<body class="bg-surface font-body text-on-surface">
+<!-- Navigation Drawer (Persistent Sidebar) -->
+<aside class="fixed left-0 top-0 h-full z-40 flex flex-col bg-white border-r border-slate-100 w-20 md:w-64 transition-all duration-300 ease-in-out group shadow-[0_12px_40px_0_rgba(13,28,47,0.06)]">
+<div class="p-6 flex items-center gap-3">
+<div class="w-10 h-10 bg-gradient-to-br from-primary to-primary-container rounded-xl flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-white" style="font-variation-settings: 'FILL' 1;">deployed_code</span>
+</div>
+<span class="hidden md:block text-xl font-black tracking-tight text-blue-700">SmartHire</span>
+</div>
+<nav class="flex-1 px-4 py-6 space-y-2">
+<!-- Active Tab: Dashboard -->
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl bg-blue-50 text-blue-700 border-r-4 border-blue-600 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="hidden md:block font-medium">Dashboard</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-blue-500 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+<span class="hidden md:block font-medium">Job Search</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-blue-500 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+<span class="hidden md:block font-medium">Skill Analysis</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-blue-500 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="hidden md:block font-medium">Applications</span>
+</a>
+<a class="flex items-center gap-4 px-4 py-3 rounded-xl text-slate-600 hover:bg-slate-50 hover:text-blue-500 transition-all duration-300" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+<span class="hidden md:block font-medium">Settings</span>
+</a>
+</nav>
+<div class="p-4 border-t border-slate-50">
+<div class="flex items-center gap-3 p-2 rounded-xl hover:bg-slate-50 transition-colors cursor-pointer">
+<div class="w-10 h-10 rounded-full overflow-hidden bg-slate-200">
+<img class="w-full h-full object-cover" data-alt="professional portrait of Alex Rivera, a Hispanic man with glasses wearing a dark blazer in a bright studio" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBTbkMal19kfFIa7SzLhxjejMsFzOjU6HOx4Gx0AroJ2caokjrVQusMbPBanKt4bwg3CJJOUPCz_jLxKpHyvcLG-7YlNdV5CXqTpblxe9iGKYPzhnTMv7Pl3MdjcTCidcHe3UQ6i1yaqPm8kaUHBmGl368BjC1Odq9IhHT5Ec8SWiUyew2QZH5AxetEYCP_vtHL33RhN8AjabL9kbtDRPZRvwyLGmoFIiB2RU4WqWlCtj3TRLpiKYBfwknFgEkVaUf6RMHY6DbQvrTu"/>
+</div>
+<div class="hidden md:block">
+<p class="text-sm font-bold text-on-surface">Alex Rivera</p>
+<p class="text-xs text-slate-500">Senior Product Designer</p>
+</div>
+</div>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="ml-20 md:ml-64 min-h-screen p-6 md:p-12 pb-24 md:pb-12">
+<!-- Header Section -->
+<header class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
+<div>
+<h1 class="text-4xl font-extrabold tracking-tight font-headline text-on-surface">Candidate Intelligence</h1>
+<p class="text-on-surface-variant mt-2 font-medium">Welcome back, Alex. Your matching engine has 12 new opportunities.</p>
+</div>
+<!-- AI Profile Strength Meter -->
+<div class="glass-morphism rounded-2xl p-4 pr-6 flex items-center gap-4 shadow-sm border border-white/40">
+<div class="relative w-16 h-16">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-slate-100" cx="18" cy="18" fill="none" r="16" stroke-width="3"></circle>
+<circle class="stroke-primary" cx="18" cy="18" fill="none" r="16" stroke-dasharray="85, 100" stroke-linecap="round" stroke-width="3"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-xs font-bold text-on-surface">85%</span>
+</div>
+</div>
+<div>
+<h3 class="text-sm font-semibold text-on-surface uppercase tracking-wider">AI Profile Strength</h3>
+<p class="text-xs text-on-surface-variant font-medium">Excellent completion rate</p>
+</div>
+</div>
+</header>
+<!-- Dashboard Layout -->
+<div class="grid grid-cols-1 xl:grid-cols-3 gap-8 items-start">
+<!-- Match Cards (Job Postings) -->
+<div class="xl:col-span-2 space-y-6">
+<div class="flex items-center justify-between">
+<h2 class="text-xl font-bold font-headline text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="auto_awesome" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+                        Top AI Match Picks
+                    </h2>
+<button class="text-primary font-bold text-sm hover:underline">View All Matches</button>
+</div>
+<div class="grid grid-cols-1 gap-6">
+<!-- Job Card 1 -->
+<div class="group bg-white rounded-xl p-6 flex flex-col md:flex-row items-start md:items-center gap-6 transition-all hover:shadow-[0_12px_40px_0_rgba(13,28,47,0.06)] border border-transparent hover:border-blue-100">
+<div class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center overflow-hidden border border-slate-100 shrink-0">
+<img class="w-10 h-10 object-contain" data-alt="minimalist tech company logo with abstract geometric blue and purple shapes on white background" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDNAQFUR4-8azN0eXmUj7_xnumFRsjioW-53_1TdTTuZvL6mUCNSVP800QbvoGmwnn90ZLj2OST4RDhzdY-f5QOayxmZMt3FMZaFJ7ymjEIU8YdyuNrEbijdfhLLqrlI57nCKcdiv2IQxhFPSDtMFRiKVPy4sEs1suc25Ogw2-7-w7OTn8WfjlXFjPNPVC2lnW5MrvQVHxhl5uQlGcmbtAk-SJbcHzwG3A4PQS_eZJZB8uG1uGiwroCS7earH9KtB65pzctQBZt58o7"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Linear Tech</span>
+<span class="w-1 h-1 rounded-full bg-slate-300"></span>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">San Francisco (Remote)</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Senior Interaction Designer</h3>
+<p class="text-on-surface-variant text-sm font-medium mt-1">$160k - $210k • Full-time</p>
+</div>
+<!-- Circular Gauge -->
+<div class="flex items-center gap-6 w-full md:w-auto mt-4 md:mt-0 pt-4 md:pt-0 border-t md:border-t-0 border-slate-50">
+<div class="relative w-14 h-14 shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-slate-50" cx="18" cy="18" fill="none" r="16" stroke-width="4"></circle>
+<circle class="stroke-emerald-match" cx="18" cy="18" fill="none" r="16" stroke-dasharray="92, 100" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-black text-emerald-match">92%</span>
+</div>
+</div>
+<button class="flex-1 md:flex-none px-6 py-3 bg-[#4F46E5] text-white font-bold rounded-lg hover:shadow-lg hover:shadow-indigo-200 transition-all active:scale-95">Apply Now</button>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="group bg-white rounded-xl p-6 flex flex-col md:flex-row items-start md:items-center gap-6 transition-all hover:shadow-[0_12px_40px_0_rgba(13,28,47,0.06)] border border-transparent hover:border-blue-100">
+<div class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center overflow-hidden border border-slate-100 shrink-0">
+<img class="w-10 h-10 object-contain" data-alt="vibrant neon gradient logo for a modern digital product company" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCw88OpVFizzZ5ZYnGC3o5wqK37GCCoQyVuj6XRDCEsSi6hkBgNChjo2Z1hvIkocc3V4zhla2VFzlKI9MH1LMp_5Ofq3EM_y58eoaOorVPH0Xja68qeA1SLjWdOS9KEYmiA-M7Z9Vsix9IH3R00cnRHtIzj5SByUZRVMOoivHUpqbjqkNGKehIYe3NCoran8V25efEcAFkdbP23AptZ0aTLnNJxGAMOOJZdPaJ-y8CVzOxeJdLVi141EmxCa-ah0IiczgsasdSSNBOV"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">DesignLab AI</span>
+<span class="w-1 h-1 rounded-full bg-slate-300"></span>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">New York, NY</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Lead Experience Architect</h3>
+<p class="text-on-surface-variant text-sm font-medium mt-1">$180k - $240k • Contract</p>
+</div>
+<div class="flex items-center gap-6 w-full md:w-auto mt-4 md:mt-0 pt-4 md:pt-0 border-t md:border-t-0 border-slate-50">
+<div class="relative w-14 h-14 shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-slate-50" cx="18" cy="18" fill="none" r="16" stroke-width="4"></circle>
+<circle class="stroke-emerald-match" cx="18" cy="18" fill="none" r="16" stroke-dasharray="88, 100" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-black text-emerald-match">88%</span>
+</div>
+</div>
+<button class="flex-1 md:flex-none px-6 py-3 bg-[#4F46E5] text-white font-bold rounded-lg hover:shadow-lg hover:shadow-indigo-200 transition-all active:scale-95">Apply Now</button>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="group bg-white rounded-xl p-6 flex flex-col md:flex-row items-start md:items-center gap-6 transition-all hover:shadow-[0_12px_40px_0_rgba(13,28,47,0.06)] border border-transparent hover:border-blue-100">
+<div class="w-16 h-16 rounded-xl bg-slate-50 flex items-center justify-center overflow-hidden border border-slate-100 shrink-0">
+<img class="w-10 h-10 object-contain" data-alt="professional company branding icon showing a stylized dark grey letter S on a light surface" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCX5piedhkKEaiy6r9Zl8Sf87s0_N0FnrF0_fpcW4XtZ3SQKAHvvyrE2-BmhgR_LQ4vwYKpQrqELKh4Lyb9Xcl5mCiBW4Q3lbO96fUUIR8iqW08BEunu0KirxvghND32SOSSQfLT1-tvH4SSIXwNGOs_2pYudpVASlsPpE13IBrnUu_BgjDLS3vO6vjCBFabdqhXO3YwiolF3918mDAzHaDVSAQ4nPVeu-XnnrfI6qcb7FdGGe04PFj3nCMZKdg1bCeTYh8z1ZO1aDK"/>
+</div>
+<div class="flex-1">
+<div class="flex items-center gap-2 mb-1">
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Stripe</span>
+<span class="w-1 h-1 rounded-full bg-slate-300"></span>
+<span class="text-xs font-bold text-slate-500 uppercase tracking-widest">Global Remote</span>
+</div>
+<h3 class="text-lg font-bold text-on-surface group-hover:text-primary transition-colors">Staff Product Designer, Payments</h3>
+<p class="text-on-surface-variant text-sm font-medium mt-1">$200k - $275k • Full-time</p>
+</div>
+<div class="flex items-center gap-6 w-full md:w-auto mt-4 md:mt-0 pt-4 md:pt-0 border-t md:border-t-0 border-slate-50">
+<div class="relative w-14 h-14 shrink-0">
+<svg class="w-full h-full -rotate-90" viewbox="0 0 36 36">
+<circle class="stroke-slate-50" cx="18" cy="18" fill="none" r="16" stroke-width="4"></circle>
+<circle class="stroke-emerald-match" cx="18" cy="18" fill="none" r="16" stroke-dasharray="82, 100" stroke-linecap="round" stroke-width="4"></circle>
+</svg>
+<div class="absolute inset-0 flex items-center justify-center">
+<span class="text-[10px] font-black text-emerald-match">82%</span>
+</div>
+</div>
+<button class="flex-1 md:flex-none px-6 py-3 bg-[#4F46E5] text-white font-bold rounded-lg hover:shadow-lg hover:shadow-indigo-200 transition-all active:scale-95">Apply Now</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Skill Gap Analyzer Sidebar -->
+<div class="space-y-6">
+<div class="bg-surface-container-low rounded-xl p-8 border border-white/60 relative overflow-hidden">
+<div class="absolute top-0 right-0 p-4 opacity-10">
+<span class="material-symbols-outlined text-8xl" data-icon="troubleshoot">troubleshoot</span>
+</div>
+<h2 class="text-xl font-bold font-headline text-on-surface mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-tertiary" data-icon="query_stats">query_stats</span>
+                        Skill Gap Analyzer
+                    </h2>
+<!-- Current Skills -->
+<div class="mb-8">
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Current Strengths</h4>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1.5 bg-white border border-slate-100 rounded-full text-sm font-semibold text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Figma
+                            </span>
+<span class="px-3 py-1.5 bg-white border border-slate-100 rounded-full text-sm font-semibold text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Prototyping
+                            </span>
+<span class="px-3 py-1.5 bg-white border border-slate-100 rounded-full text-sm font-semibold text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                User Research
+                            </span>
+<span class="px-3 py-1.5 bg-white border border-slate-100 rounded-full text-sm font-semibold text-primary flex items-center gap-2">
+<span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                                Design Systems
+                            </span>
+</div>
+</div>
+<!-- Gap / Recommendations -->
+<div class="space-y-6">
+<h4 class="text-xs font-bold text-slate-500 uppercase tracking-widest mb-4">Recommended to Learn</h4>
+<div class="space-y-4">
+<!-- Skill 1 -->
+<div class="bg-white/40 p-4 rounded-lg">
+<div class="flex justify-between items-end mb-2">
+<span class="text-sm font-bold text-on-surface">React Foundations</span>
+<span class="text-xs font-bold text-tertiary">+12% Match Increase</span>
+</div>
+<div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 35%"></div>
+</div>
+</div>
+<!-- Skill 2 -->
+<div class="bg-white/40 p-4 rounded-lg">
+<div class="flex justify-between items-end mb-2">
+<span class="text-sm font-bold text-on-surface">Data Visualization</span>
+<span class="text-xs font-bold text-tertiary">+8% Match Increase</span>
+</div>
+<div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 15%"></div>
+</div>
+</div>
+<!-- Skill 3 -->
+<div class="bg-white/40 p-4 rounded-lg">
+<div class="flex justify-between items-end mb-2">
+<span class="text-sm font-bold text-on-surface">Product Strategy</span>
+<span class="text-xs font-bold text-tertiary">+15% Match Increase</span>
+</div>
+<div class="h-2 w-full bg-slate-200 rounded-full overflow-hidden">
+<div class="h-full bg-tertiary rounded-full" style="width: 60%"></div>
+</div>
+</div>
+</div>
+<button class="w-full py-4 bg-tertiary-container text-white font-bold rounded-xl hover:bg-tertiary transition-colors shadow-lg shadow-tertiary/20 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-lg" data-icon="school">school</span>
+                            Explore AI Courses
+                        </button>
+</div>
+</div>
+<!-- Secondary Insight Card -->
+<div class="glass-morphism rounded-xl p-6 border border-white/60">
+<h3 class="text-sm font-bold text-on-surface mb-2">Intelligence Brief</h3>
+<p class="text-xs text-on-surface-variant leading-relaxed">
+                        Your interaction design skills are currently in the <strong>top 5%</strong> for the San Francisco market. Focusing on <span class="text-primary font-bold">React</span> will unlock <strong>45 more</strong> senior-level positions.
+                    </p>
+</div>
+</div>
+</div>
+</main>
+<!-- Bottom Navigation Bar (Mobile Only) -->
+<nav class="fixed bottom-0 left-0 w-full z-50 flex justify-around items-center px-4 pb-4 pt-2 md:hidden bg-white/80 backdrop-blur-lg border-t border-slate-200/50">
+<a class="flex flex-col items-center justify-center bg-blue-100 text-blue-700 rounded-xl p-2 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard" style="font-variation-settings: 'FILL' 1;">dashboard</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:text-blue-500" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:text-blue-500" href="#">
+<span class="material-symbols-outlined" data-icon="psychology">psychology</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:text-blue-500" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+</a>
+<a class="flex flex-col items-center justify-center text-slate-400 p-2 hover:text-blue-500" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+</a>
+</nav>
+</body></html>
